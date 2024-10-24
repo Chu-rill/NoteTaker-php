@@ -5,7 +5,7 @@ require_once "../config.php";
 $host = $config['db_host'];
 $dbname = $config['db_name'];
 $dbusername = $config['db_user'];
-$dbpassword = "";
+$dbpassword = $config['db_pass'];
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbusername, $dbpassword);
