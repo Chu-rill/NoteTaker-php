@@ -6,7 +6,7 @@ require_once "../repository/user.repository.php";
 require_once "../utils/email.validation.php";
 require_once "../config_session.php";
 
-function signup_user(string $username, string $email, string $password): bool|string
+function signup_user(string $username, string $email, string $password): bool|array
 {
 
     $errors = [];
@@ -34,7 +34,7 @@ function signup_user(string $username, string $email, string $password): bool|st
     return $user;
 }
 
-function login_user(string $username, string $password): bool|string
+function login_user(string $username, string $password): bool|array
 {
     $errors = [];
 

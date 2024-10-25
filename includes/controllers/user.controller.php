@@ -53,10 +53,10 @@ function handleLogin()
     $password = $_POST['password'];
     $response = login_user($username, $password);
 
-    if ($response === true) {
+    if (is_array($response)) {
         header("Location: ../../pages/Home.php");
         exit();
     } else {
-        echo $response; // Display error message
+        echo "Error: " . htmlspecialchars($response); // Display error message
     }
 }
