@@ -21,6 +21,7 @@ function signup_user(string $username, string $email, string $password): bool|st
     if ($errors) {
         $_SESSION["errors_signup"] = $errors;
         header("Location: ../../pages/signup.php");
+        exit();
     }
 
 
