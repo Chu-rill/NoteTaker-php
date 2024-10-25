@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Signup Successful!</h1>
+    <h1>Welcome User!</h1>
 </body>
 
 </html>

@@ -15,6 +15,7 @@ require_once "../includes/config_session.php";
     <h1>Signup</h1>
 
     <form action="../includes/controllers/user.controller.php" method="post">
+        <input type="hidden" name="action" value="signup">
         <input type="text" name="username" placeholder="Username">
         <input type="text" name="password" placeholder="Password">
         <input type="text" name="email" placeholder="E-mail">

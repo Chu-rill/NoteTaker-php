@@ -24,9 +24,34 @@ function signup_user(string $username, string $email, string $password): bool|st
         exit();
     }
 
+    $options = [
+        'cost' => 12
+    ];
 
-    $hashedPwd = password_hash($password, PASSWORD_BCRYPT);
+    $hashedPwd = password_hash($password, PASSWORD_BCRYPT, $options);
 
     $user = create_user($username, $email, $hashedPwd);
+    return $user;
+}
+
+function login_user(string $username, string $password): bool|string
+{
+    $errors = [];
+
+    if (empty($username) || empty($password)) {
+        $errors["empty_input"] = "All fields are required!";
+    }
+    if (!get_username($username)) $errors["username"] = "User Not Found";
+    $user = get_user($username);
+    $hashedPwd = $user['pwd'];
+    if (!password_verify($password, $hashedPwd)) $errors["password"] = "Incorrect password";
+
+    if ($errors) {
+        $_SESSION["errors_login"] = $errors;
+        header("Location: ../../pages/login.php");
+        exit();
+    }
+
+
     return $user;
 }

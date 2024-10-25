@@ -13,17 +13,50 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
     die();
 }
 
-$username = $_POST['username'];
-$email = $_POST['email'];
-$password = $_POST['password'];
+$action = $_POST['action'] ?? '';
 
-echo "Controller";
+switch ($action) {
+    case 'signup':
+        handleSignup();
+        break;
+    case 'login':
+        handleLogin();
+        break;
+        // case 'edit':
+        //     handleEdit();
+        //     break;
+        // case 'delete':
+        //     handleDelete();
+        //     break;
+    default:
+        echo "Invalid action.";
+}
 
-$result = signup_user($username, $email, $password);
+function handleSignup()
+{
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $response = signup_user($username, $email, $password);
 
-if ($result === true) {
-    header("Location: ../../pages/success.php");
-    exit();
-} else {
-    echo $result; // Display error message
+    if ($response === true) {
+        header("Location: ../../pages/Home.php");
+        exit();
+    } else {
+        echo $response; // Display error message
+    }
+}
+
+function handleLogin()
+{
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $response = login_user($username, $password);
+
+    if ($response === true) {
+        header("Location: ../../pages/Home.php");
+        exit();
+    } else {
+        echo $response; // Display error message
+    }
 }
