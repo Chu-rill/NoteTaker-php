@@ -1,0 +1,44 @@
+header {
+  margin: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+header a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+header button {
+  height: 40px;
+  width: 120px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4ec74e;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+header button:hover {
+  background-color: #3ea43e;
+}
+
+header button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(78, 199, 78, 0.4);
+}

@@ -8,11 +8,18 @@ $username = $_SESSION["user_username"] ?? "User";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success</title>
+    <title>Note</title>
+    <link rel="stylesheet" href="../css//Home.css">
 </head>
 
 <body>
-    <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
+    <header>
+        <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
+        <a href="AddNote.php" button-link">
+            <button type="button">Add Note</button>
+        </a>
+    </header>
+
 </body>
 
 </html>
