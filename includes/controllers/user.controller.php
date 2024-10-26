@@ -39,11 +39,14 @@ function handleSignup()
     $password = $_POST['password'];
     $response = signup_user($username, $email, $password);
 
-    if ($response === true) {
+    if (is_array($response)) {
+
+        $_SESSION["user_id"] = $response["id"];
+        $_SESSION["user_username"] = htmlspecialchars($response["username"]);
         header("Location: ../../pages/Home.php");
         exit();
     } else {
-        echo $response; // Display error message
+        echo "Error: " . htmlspecialchars($response);
     }
 }
 

@@ -10,7 +10,12 @@ function create_user(string $username, string $email, string $hashedPwd)
         $pdo = db_connect();
         $query = "INSERT INTO users (username, email, pwd) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($query);
-        $user = $stmt->execute([$username, $email, $hashedPwd]);
+        $stmt->execute([$username, $email, $hashedPwd]);
+
+        $query = "SELECT * FROM users WHERE username = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $pdo = null;
         $stmt = null;
