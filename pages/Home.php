@@ -1,4 +1,7 @@
-<!-- includes/pages/success.php -->
+<?php
+session_start();
+$username = $_SESSION["user_username"] ?? "User";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
 </head>
 
 <body>
-    <h1>Welcome User!</h1>
+    <h1>Welcome, <?php echo htmlspecialchars($username); ?>!</h1>
 </body>
 
 </html>

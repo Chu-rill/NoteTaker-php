@@ -43,8 +43,11 @@ function login_user(string $username, string $password): bool|array
     }
     if (!get_username($username)) $errors["username"] = "User Not Found";
     $user = get_user($username);
-    $hashedPwd = $user['pwd'];
-    if (!password_verify($password, $hashedPwd)) $errors["password"] = "Incorrect password";
+    if ($user && isset($user['pwd']) && password_verify($password, $user['pwd'])) {
+        return $user; // Successful login
+    } else {
+        $errors["password"] = "Incorrect password";
+    }
 
     if ($errors) {
         $_SESSION["errors_login"] = $errors;
@@ -53,5 +56,5 @@ function login_user(string $username, string $password): bool|array
     }
 
 
-    return $user;
+    return false;
 }

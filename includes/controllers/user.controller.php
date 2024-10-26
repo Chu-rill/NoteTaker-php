@@ -54,6 +54,15 @@ function handleLogin()
     $response = login_user($username, $password);
 
     if (is_array($response)) {
+        $newSessionId = session_create_id();;
+        $sessionId = $newSessionId . "_" . $response["id"];
+        session_id($sessionId);
+
+        $_SESSION["user_id"] = $response["id"];
+        $_SESSION["user_username"] = htmlspecialchars($response["username"]);
+
+        $_SESSION['last_regeneration'] = time();
+
         header("Location: ../../pages/Home.php");
         exit();
     } else {
