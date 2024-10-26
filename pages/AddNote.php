@@ -1,3 +1,6 @@
+<?php
+require_once "../includes/config_session.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,15 +17,26 @@
         <?php if (isset($_GET['success'])): ?>
         <p class="success">Note added successfully!</p>
         <?php endif; ?>
-        <form method="POST" action="add_note.php">
+        <form method="POST" action="../includes/controllers/note.controller.php">
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title">
 
             <label for="content">Content:</label>
-            <textarea id="content" name="content" rows="5" required></textarea>
+            <textarea id="content" name="content" rows="5"></textarea>
 
             <button type="submit">Add Note</button>
         </form>
+        <?php if (isset($_SESSION['errors_note'])): ?>
+        <div class="error-message" style="color: red;">
+            <?php
+                // Loop through and display all error messages
+                foreach ($_SESSION['errors_note'] as $error) {
+                    echo "<p>$error</p>";
+                }
+                unset($_SESSION['errors_note']); // Clear the error messages after displaying
+                ?>
+        </div>
+        <?php endif; ?>
     </div>
 </body>
 
