@@ -39,7 +39,9 @@ $username = $_SESSION["user_username"] ?? "User";
             <section>
                 <h1><?php echo htmlspecialchars($note["id"]); ?></h1>
                 <div class="actions">
-                    <button class="edit">Edit</button>
+                    <a href="EditNote.php?note_id=<?php echo $note['id']; ?>">
+                        <button class="edit">Edit</button>
+                    </a>
                     <form action="../includes/controllers/note.controller.php" method="post">
                         <input type="hidden" name="action" value="delete">
                         <button class="delete" data-id="<?php echo $note['id']; ?>">Delete</button>

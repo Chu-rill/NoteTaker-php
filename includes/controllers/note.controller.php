@@ -25,6 +25,9 @@ switch ($action) {
     case 'delete':
         handle_delete_note();
         break;
+    case 'edit':
+        handle_edit_note();
+        break;
     default:
         echo "Invalid action.";
 }
@@ -56,5 +59,25 @@ function handle_delete_note()
         exit();
     } else {
         echo "Error deleting note. Note ID may be missing or invalid.";
+    }
+}
+
+function handle_edit_note()
+{
+    if (!isset($_SESSION["user_id"])) {
+        echo "User not logged in.";
+        return;
+    }
+
+    $noteId = isset($_POST["note_id"]) ? (int)$_POST["note_id"] : 0; // Cast to integer
+    $title = $_POST["title"] ?? '';
+    $content = $_POST["content"] ?? '';
+    $userId = $_SESSION["user_id"];
+
+    if ($noteId > 0 && edit_user_note_by_id($noteId, $title, $content, $userId)) {
+        header("Location: ../../pages/Home.php");
+        exit();
+    } else {
+        echo "Error editing note.";
     }
 }
