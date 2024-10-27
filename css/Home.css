@@ -85,3 +85,39 @@ header button:focus {
   color: #555;
   text-align: center;
 }
+.note button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Specific styles for Edit and Delete buttons */
+.note button:nth-child(1) {
+  /* Edit Button */
+  background-color: #4caf50;
+  color: white;
+}
+
+.note button:nth-child(2) {
+  /* Delete Button */
+  background-color: #f44336;
+  color: white;
+}
+
+.note button:hover {
+  opacity: 0.9;
+}
+.note section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.actions {
+  /* width: 100%; */
+  display: flex;
+}

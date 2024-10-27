@@ -22,12 +22,6 @@ switch ($action) {
     case 'login':
         handleLogin();
         break;
-        // case 'edit':
-        //     handleEdit();
-        //     break;
-        // case 'delete':
-        //     handleDelete();
-        //     break;
     default:
         echo "Invalid action.";
 }

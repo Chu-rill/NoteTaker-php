@@ -19,7 +19,7 @@ $username = $_SESSION["user_username"] ?? "User";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Note</title>
-    <link rel="stylesheet" href="../css//Home.css">
+    <link rel="stylesheet" href="../css/Home.css">
 </head>
 
 <body>
@@ -35,6 +35,18 @@ $username = $_SESSION["user_username"] ?? "User";
         <?php else: ?>
         <?php foreach ($notes as $note): ?>
         <div class="note">
+
+            <section>
+                <h1><?php echo htmlspecialchars($note["id"]); ?></h1>
+                <div class="actions">
+                    <button class="edit">Edit</button>
+                    <form action="../includes/controllers/note.controller.php" method="post">
+                        <input type="hidden" name="action" value="delete">
+                        <button class="delete" data-id="<?php echo $note['id']; ?>">Delete</button>
+                    </form>
+                </div>
+
+            </section>
             <h2><?php echo htmlspecialchars($note["title"]); ?></h2>
             <p><?php echo htmlspecialchars($note["content"]); ?></p>
             <small>Created at: <?php echo htmlspecialchars($note["created_at"]); ?></small>
@@ -43,7 +55,33 @@ $username = $_SESSION["user_username"] ?? "User";
         <?php endif; ?>
     </div>
 
+    <script>
+    document.querySelectorAll(".delete").forEach((button) => {
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            const noteId = this.getAttribute("data-id");
 
+            const form = document.createElement("form");
+            form.method = "post";
+            form.action = "../includes/controllers/note.controller.php";
+
+            const actionInput = document.createElement("input");
+            actionInput.type = "hidden";
+            actionInput.name = "action";
+            actionInput.value = "delete";
+            form.appendChild(actionInput);
+
+            const idInput = document.createElement("input");
+            idInput.type = "hidden";
+            idInput.name = "note_id";
+            idInput.value = noteId;
+            form.appendChild(idInput);
+
+            document.body.appendChild(form);
+            form.submit();
+        });
+    });
+    </script>
 </body>
 
 </html>

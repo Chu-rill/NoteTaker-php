@@ -27,7 +27,7 @@ function get_user_notes(int $userId)
 {
     try {
         $pdo = db_connect();
-        $query = "SELECT * FROM notes WHERE users_id = ? ORDER BY created_at DESC";
+        $query = "SELECT * FROM notes WHERE users_id = ? ORDER BY created_at ASC";
         $stmt = $pdo->prepare($query);
         $stmt->execute([$userId]);
         $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -36,5 +36,20 @@ function get_user_notes(int $userId)
     } catch (PDOException $e) {
         error_log("Error fetching notes: " . $e->getMessage());
         return [];
+    }
+}
+
+function delete_user_note_by_id(int $noteId, int $userId): bool
+{
+    try {
+        $pdo = db_connect();
+        $query = "DELETE FROM notes WHERE id = ? AND users_id = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$noteId, $userId]);
+
+        return $stmt->rowCount() > 0;
+    } catch (PDOException $e) {
+        error_log("Error deleting note: " . $e->getMessage());
+        return false;
     }
 }

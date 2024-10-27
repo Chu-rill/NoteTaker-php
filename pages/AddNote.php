@@ -18,6 +18,7 @@ require_once "../includes/config_session.php";
         <p class="success">Note added successfully!</p>
         <?php endif; ?>
         <form method="POST" action="../includes/controllers/note.controller.php">
+            <input type="hidden" name="action" value="create">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title">
 
