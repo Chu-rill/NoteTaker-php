@@ -67,6 +67,6 @@ function handleLogin()
         echo "Error: " . htmlspecialchars($response); // Display error message
         $errors["login_error"] = "Error loginin!" . $response;
         $_SESSION["errors_login"] = $errors;
-        header("Location: ../../pages/login.php");
+        header("Location: ../../pages/index.php");
     }
 }

@@ -20,7 +20,7 @@ require_once "../includes/config_session.php";
         <input type="password" name="password" placeholder="Password">
         <input type="text" name="email" placeholder="E-mail">
         <button>Signup</button>
-        <P>Already have an Account<a href="login.php">Login</a></P>
+        <P>Already have an Account<a href="index.php">Login</a></P>
     </form>
     <?php if (isset($_SESSION['errors_signup'])): ?>
     <div class="error-message" style="color: red;">
